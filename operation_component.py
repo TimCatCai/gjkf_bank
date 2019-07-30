@@ -92,7 +92,6 @@ class ButtonClick(Component):
         self._is_click = click
 
 
-
 class InputBox(Component):
 
     def __init__(self, location, input_content):
@@ -119,3 +118,16 @@ class InputBox(Component):
     @input_content.setter
     def input_content(self, input_content):
         self._input_content = input_content
+
+
+class Combination(Component):
+    def __init__(self, component_list, duration=0):
+        self._component_list = component_list
+        self._duration = duration
+
+    def operate(self):
+        for component in self._component_list:
+            component.operate()
+            if self._duration >= 0:
+                print("sleep: " + str(self._duration))
+                time.sleep(self._duration)
